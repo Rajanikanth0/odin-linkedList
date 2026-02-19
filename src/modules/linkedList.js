@@ -1,30 +1,40 @@
 class LinkedList {
   constructor() {
-    this.head = new Node();
+    this.head = null;
+    this.tail = null;
   }
 
   append(value) {
     const node = new Node(value);
 
-    const lastNode = LinkedList.getLastNode(this.head);
-    lastNode.nextNode = node;
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.nextNode = node;
+      this.tail = node;
+    }
   }
 
-  static getLastNode(node) {
-    if (node.nextNode === null) return node;
-    return LinkedList.getLastNode(node.nextNode);
+  getLastNode() {
+    return this.tail();
   }
 
-  static getList(node, arr = []) {
-    if (node.nextNode === null) return arr;
-    
-    arr.push(node.nextNode.value);
-    return LinkedList.getList(node.nextNode, arr);
+  getList() {
+    const arr = [];
+    let current = this.head;
+
+    while (current) {
+      arr.push(current.value);
+      current = current.nextNode;
+    }
+
+    return arr;
   }
 }
 
 class Node {
-  constructor(value = null, nextNode = null) {
+  constructor(value, nextNode = null) {
     this.value = value;
     this.nextNode = nextNode;
   }
