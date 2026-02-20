@@ -14,11 +14,9 @@ A performance efficient data-structure for push (insertion) and pop (deletion)
 - toString()
 
 ### append(value)
-> Add 2 tracking pointers
->
-> head (start): first node of the list
-> 
-> tail (end): last node of the list
+> add 2 tracking pointers
+> - head (start): first node of the list
+> - tail (end): last node of the list
 
 ```javascript
 create a Node (key-value pair)
