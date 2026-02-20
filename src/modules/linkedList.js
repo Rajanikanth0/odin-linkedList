@@ -9,16 +9,18 @@ class LinkedList {
     if (
       typeof index !== "number" ||
       !Number.isInteger(index) ||
-      index < 0 ||
-      this.length <= index
+      index < 0
     ) return;
 
     let current = this.headPointer;
+    let count = 0;
 
-    for (let x=0; x<index; x++) {
-      current = current.nextNode
+    while(current && count < index) {
+      current = current.nextNode;
+      count++;
     }
-    return current.value;
+
+    return current ? current.value : undefined;
   }
 
   tail() {
