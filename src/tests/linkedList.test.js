@@ -31,6 +31,7 @@ describe("test prepend method", () => {
 
     expect(list.getList()).toEqual([0]);
   });
+
   test("prepend three nodes", () => {
     list.prepend(1);
     list.prepend(2);
@@ -38,4 +39,24 @@ describe("test prepend method", () => {
     
     expect(list.getList()).toEqual([3, 2, 1]);
   })
+});
+
+describe("test size method", () => {
+  test("empty list size", () => {
+    expect(list.size()).toBe(0);
+  });
+
+  test("add a node", () => {
+    list.append(1);
+
+    expect(list.size()).toBe(1);
+  });
+
+  test("add three nodes", () => {
+    list.append(1);
+    list.prepend(2);
+    list.prepend(3);
+
+    expect(list.size()).toBe(3);
+  });
 });

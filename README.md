@@ -50,3 +50,14 @@ else:
   newNode.next = head;
   head = newNode;
 ```
+
+### size()
+returns the total number of nodes in the list
+
+> Tracking pointers:
+> - **length** as 0: total number of nodes
+
+```javascript
+After each insertion: increase length by 1
+After each deletion: decrease length by 1
+```
