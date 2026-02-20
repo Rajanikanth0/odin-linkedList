@@ -80,5 +80,19 @@ describe("test head and tail methods", () => {
     list.append(2);
 
     expect(list.tail().value).toBe(2);
-  })
-})
+  });
+});
+
+describe("test at method", () => {
+  test("returns undefined for index greater than list length", () => {
+    expect(list.at(2)).toBe(undefined);
+  });
+
+  test("returns value of the node", () => {
+    list.append(1);
+    list.append(2);
+    list.append(3);
+
+    expect(list.at(2)).toBe(3);
+  });
+});
