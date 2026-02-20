@@ -60,3 +60,25 @@ describe("test size method", () => {
     expect(list.size()).toBe(3);
   });
 });
+
+describe("test head and tail methods", () => {
+  test("test empty list head", () => {
+    expect(list.head()).toBe(undefined);
+  });
+  test("test length of 2 head", () => {
+    list.prepend(1);
+    list.append(2);
+
+    expect(list.head().value).toBe(1);
+  });
+
+  test("test tail method", () => {
+    expect(list.tail()).toBe(undefined);
+  });
+  test("test length of 2 tail", () => {
+    list.prepend(1);
+    list.append(2);
+
+    expect(list.tail().value).toBe(2);
+  })
+})

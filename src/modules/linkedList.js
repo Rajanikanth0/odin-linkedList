@@ -1,8 +1,16 @@
 class LinkedList {
   constructor() {
-    this.head = null;
-    this.tail = null;
+    this.headPointer = undefined;
+    this.tailPointer = undefined;
     this.length = 0;
+  }
+
+  tail() {
+    return this.tailPointer;
+  }
+
+  head() {
+    return this.headPointer;
   }
 
   size() {
@@ -12,12 +20,12 @@ class LinkedList {
   prepend(value) {
     const node = new Node(value);
 
-    if (!this.head) {
-      this.head = node;
-      this.tail = node;
+    if (!this.headPointer) {
+      this.headPointer = node;
+      this.tailPointer = node;
     } else {
-      node.nextNode = this.head;
-      this.head = node;
+      node.nextNode = this.headPointer;
+      this.headPointer = node;
     }
 
     this.length++;
@@ -26,12 +34,12 @@ class LinkedList {
   append(value) {
     const node = new Node(value);
 
-    if (!this.head) {
-      this.head = node;
-      this.tail = node;
+    if (!this.headPointer) {
+      this.headPointer = node;
+      this.tailPointer = node;
     } else {
-      this.tail.nextNode = node;
-      this.tail = node;
+      this.tailPointer.nextNode = node;
+      this.tailPointer = node;
     }
 
     this.length++;
@@ -39,7 +47,7 @@ class LinkedList {
 
   getList() {
     const arr = [];
-    let current = this.head;
+    let current = this.headPointer;
 
     while (current) {
       arr.push(current.value);

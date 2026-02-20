@@ -61,3 +61,17 @@ returns the total number of nodes in the list
 After each insertion: increase length by 1
 After each deletion: decrease length by 1
 ```
+
+### head() and tail()
+returns current respective nodes. undefined if list is empty.
+
+> Tracking pointers:
+> - **head** as undefined: first node of the list
+> - **tail** as undefined: last node of the list
+
+```javascript
+Update the pointers on each insertion or deletion
+
+head to be the first node
+tail to be the last node 
+```
