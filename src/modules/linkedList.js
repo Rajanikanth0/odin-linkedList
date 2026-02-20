@@ -4,16 +4,28 @@ class LinkedList {
     this.tail = null;
   }
 
-  append(value) {
+  prepend(value) {
     const node = new Node(value);
 
     if (!this.head) {
       this.head = node;
       this.tail = node;
     } else {
-      this.tail.nextNode = node;
-      this.tail = node;
+      node.nextNode = this.head;
+      this.head = node;
     }
+  }
+
+  append(value) {
+    const node = new Node(value);
+
+    if (!this.head) {
+      this.head = node;
+    } else {
+      this.tail.nextNode = node;
+    }
+    // update tail node
+    this.tail = node;
   }
 
   getList() {
