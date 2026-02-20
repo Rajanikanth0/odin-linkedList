@@ -3,7 +3,7 @@ class LinkedList {
     this.head = null;
     this.tail = null;
   }
-
+  
   prepend(value) {
     const node = new Node(value);
 
@@ -21,11 +21,11 @@ class LinkedList {
 
     if (!this.head) {
       this.head = node;
+      this.tail = node;
     } else {
       this.tail.nextNode = node;
+      this.tail = node;
     }
-    // update tail node
-    this.tail = node;
   }
 
   getList() {

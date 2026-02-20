@@ -1,7 +1,7 @@
 # Linked List (Dynamic Data Allocation)
 A performance efficient data-structure for push (insertion) and pop (deletion)
 
-## methods
+## List of methods
 - append(value)
 - prepend(value)
 - size()
@@ -13,36 +13,40 @@ A performance efficient data-structure for push (insertion) and pop (deletion)
 - findIndex(value)
 - toString()
 
-## Algorithm
+## Methods (usage, description, algorithm)
 
 ### append(value)
-> add 2 tracking pointers
-> - head (start): first node of the list
-> - tail (end): last node of the list
+Adds a new node containing value to the end of the list
+
+> Tracking pointers:
+> - **head**: first node of the list
+> - **tail**: last node of the list
 
 ```javascript
-create a Node (key-value pair)
+create a Node (value + next pointer)
 
 if list is empty:
-  add newNode to head
+  head = newNode
+  tail = newNode
 else:
-  add newNode as tail's nextNode
-
-finally: add newNode to tail
+  tail.next = newNode
+  tail = newNode
 ```
 
 ### prepend(value)
-> add 1 tracking pointer
-> - head (start): first node of the list
-> - tail (end): last node of the list (optional)
+adds a new node containing value to the start of the list
+
+> Tracking pointers:
+> - **head**: first node of the list
+> - **tail**: last node of the list (optional)
 
 ```javascript
-create a Node (key-value pair)
+create a Node (value + next pointer)
 
 if list is empty:
-  add newNode to head
-  add newNode to tail (optional)
+  head = newNode
+  tail = newNode (optional)
 else:
-  add head as node's nextNode
-  add newNode to head
+  newNode.next = head;
+  head = newNode;
 ```
