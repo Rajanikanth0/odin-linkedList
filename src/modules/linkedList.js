@@ -1,71 +1,82 @@
 class LinkedList {
   constructor() {
-    this.headPointer = undefined;
-    this.tailPointer = undefined;
-    this.length = 0;
+    this._head = null;
   }
 
   at(index) {
-    if (
-      typeof index !== "number" ||
-      !Number.isInteger(index) ||
-      index < 0
-    ) return;
-
-    let current = this.headPointer;
+    let current = this._head;
     let count = 0;
 
-    while(current && count < index) {
-      current = current.nextNode;
+    while (current && count < index) {
       count++;
+      current = current.nextNode;
     }
 
-    return current ? current.value : undefined;
+    return (current) ? current.value : undefined;
   }
 
   tail() {
-    return this.tailPointer;
+    if (this._head === null) return;
+
+    let current = this._head;
+
+    while (current.nextNode) {
+      current = current.nextNode;
+    }
+
+    return current.value;
   }
 
   head() {
-    return this.headPointer;
+    return (this._head !== null)
+      ? this._head.value
+      : undefined;
   }
 
   size() {
-    return this.length;
+    let count = 0;
+    let current = this._head;
+
+    while (current) {
+      count++;
+      current = current.nextNode;
+    }
+
+    return count;
   }
   
   prepend(value) {
-    const node = new Node(value);
-
-    if (!this.headPointer) {
-      this.headPointer = node;
-      this.tailPointer = node;
-    } else {
-      node.nextNode = this.headPointer;
-      this.headPointer = node;
+    const newNode = new Node(value);
+    
+    if (this._head === null) {
+      this._head = newNode;
+      return;
     }
 
-    this.length++;
+    newNode.nextNode = this._head;
+    this._head = newNode;
   }
 
   append(value) {
-    const node = new Node(value);
+    const newNode = new Node(value);
 
-    if (!this.headPointer) {
-      this.headPointer = node;
-      this.tailPointer = node;
-    } else {
-      this.tailPointer.nextNode = node;
-      this.tailPointer = node;
+    if (this._head === null) {
+      this._head = newNode;
+      return;
     }
 
-    this.length++;
+    let current = this._head;
+
+    while (current.nextNode) {
+      current = current.nextNode;
+    }
+
+    current.nextNode = newNode;
   }
 
   getList() {
     const arr = [];
-    let current = this.headPointer;
+    let current = this._head;
 
     while (current) {
       arr.push(current.value);
@@ -83,4 +94,4 @@ class Node {
   }
 }
 
-export default LinkedList;
+export { LinkedList, Node };

@@ -1,43 +1,53 @@
-import LinkedList from "../modules/linkedList";
+import { LinkedList, Node } from "../modules/linkedList";
 
 let list;
 beforeEach(() => {
   list = new LinkedList();
-})
+});
 
-test("test list traversal", () => {
-  expect(list.getList()).toEqual([]);
+describe("test list traversal", () => {
+  test("returns an empty array", () => {
+    expect(list.getList()).toEqual([]);
+  });
+  test("returns an array item", () => {
+    // manual list creation
+    list._head = new Node('a');
+    expect(list.getList()).toEqual(['a']);
+  });
+  test("returns a list of array items", () => {
+    // manual list creation
+    list._head = new Node('a');
+    list._head.nextNode = new Node('b');
+
+    expect(list.getList()).toEqual(['a', 'b']);
+  });
 });
 
 describe("test append method", () => {
   test("append a node", () => {
-    list.append(5);
-  
-    expect(list.getList()).toEqual([5]);
+    list.append('a');
+    expect(list.getList()).toEqual(['a']);
   });
-  
   test("append three nodes", () => {
-    list.append(1);
-    list.append(2);
-    list.append(3);
+    list.append('a');
+    list.append('b');
+    list.append('c');
     
-    expect(list.getList()).toEqual([1, 2, 3]);
+    expect(list.getList()).toEqual(['a', 'b', 'c']);
   });
 });
 
 describe("test prepend method", () => {
   test("prepend a node", () => {
-    list.prepend(0);
-
-    expect(list.getList()).toEqual([0]);
+    list.prepend('a');
+    expect(list.getList()).toEqual(['a']);
   });
-
   test("prepend three nodes", () => {
-    list.prepend(1);
-    list.prepend(2);
-    list.prepend(3);
+    list.prepend('a');
+    list.prepend('b');
+    list.prepend('c');
     
-    expect(list.getList()).toEqual([3, 2, 1]);
+    expect(list.getList()).toEqual(['c', 'b', 'a']);
   })
 });
 
@@ -45,60 +55,67 @@ describe("test size method", () => {
   test("empty list size", () => {
     expect(list.size()).toBe(0);
   });
-
   test("add a node", () => {
-    list.append(1);
+    list.append('a');
 
     expect(list.size()).toBe(1);
   });
-
   test("add three nodes", () => {
-    list.append(1);
-    list.prepend(2);
-    list.prepend(3);
+    list.append('a');
+    list.append('b');
+    list.append('c');
 
     expect(list.size()).toBe(3);
   });
 });
 
-describe("test head and tail methods", () => {
-  test("test empty list head", () => {
-    expect(list.head()).toBe(undefined);
+describe("test head method", () => {
+  test("empty list", () => {
+    expect(list.head()).toBeUndefined();
   });
-  test("test length of 2 head", () => {
-    list.prepend(1);
-    list.append(2);
+  test("list of length 1", () => {
+    list.append('a');
+    expect(list.head()).toBe('a');
+  })
+  test("list of length 2", () => {
+    list.prepend('a');
+    list.append('b');
 
-    expect(list.head().value).toBe(1);
+    expect(list.head()).toBe('a');
   });
+});
 
-  test("test tail method", () => {
-    expect(list.tail()).toBe(undefined);
+describe("test tail method", () => {
+  test("empty list", () => {
+    expect(list.tail()).toBeUndefined();
   });
-  test("test length of 2 tail", () => {
-    list.prepend(1);
-    list.append(2);
-
-    expect(list.tail().value).toBe(2);
+  test("list of length 1", () => {
+    list.append('a');
+    expect(list.tail()).toBe('a');
+  })
+  test("list of length 2", () => {
+    list.append('a');
+    list.append('b');
+  
+    expect(list.tail()).toBe('b');
   });
 });
 
 describe("test at method", () => {
-  test("returns undefined for empty list", () => {
-    expect(list.at(2)).toBe(undefined);
+  test("empty list", () => {
+    expect(list.at(2)).toBeUndefined();
   });
-
-  test("returns undefined for index greater than list length", () => {
+  test("index greater than list length", () => {
     list.append(1);
     list.append(2);
 
-    expect(list.at(5)).toBe(undefined);
+    expect(list.at(5)).toBeUndefined();
   });
-
-  test("returns value of the node", () => {
+  test("value of the node at index", () => {
     list.append(1);
     list.append(2);
     list.append(3);
+    list.append(4);
 
     expect(list.at(2)).toBe(3);
   });
