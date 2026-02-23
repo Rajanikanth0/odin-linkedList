@@ -3,6 +3,21 @@ class LinkedList {
     this._head = null;
   }
 
+  findIndex(value) {
+    let current = this._head;
+    let index = 0;
+
+    while (current) {
+      if (value === current.value) {
+        return index;
+      }
+      current = current.nextNode;
+      index++;
+    }
+
+    return -1;
+  }
+
   contains(value) {
     let current = this._head;
 

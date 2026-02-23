@@ -140,7 +140,7 @@ describe("test pop method", () => {
   })
 })
 
-describe.only("test contains method", () => {
+describe("test contains method", () => {
   test("empty list", () => {
     expect(list.contains('a')).toBe(false);
   })
@@ -153,5 +153,21 @@ describe.only("test contains method", () => {
     list.append('b');
 
     expect(list.contains('b')).toBe(true);
+  })
+})
+
+describe.only("test findIndex method", () => {
+  test("empty list", () => {
+    expect(list.findIndex(0)).toBe(-1);
+  })
+  test("list does not contain the item", () => {
+    list.append('a');
+    expect(list.findIndex(2)).toBe(-1);
+  })
+  test("list contains the item", () => {
+    list.append('a');
+    list.append('b');
+
+    expect(list.findIndex('b')).toBe(1);
   })
 })
