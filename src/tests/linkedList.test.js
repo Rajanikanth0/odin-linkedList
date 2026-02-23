@@ -6,15 +6,15 @@ beforeEach(() => {
 });
 
 describe("test list traversal", () => {
-  test("returns an empty array", () => {
+  test("empty list", () => {
     expect(list.getList()).toEqual([]);
   });
-  test("returns an array item", () => {
+  test("list of length 1", () => {
     // manual list creation
     list._head = new Node('a');
     expect(list.getList()).toEqual(['a']);
   });
-  test("returns a list of array items", () => {
+  test("list of length 2", () => {
     // manual list creation
     list._head = new Node('a');
     list._head.nextNode = new Node('b');
@@ -52,15 +52,15 @@ describe("test prepend method", () => {
 });
 
 describe("test size method", () => {
-  test("empty list size", () => {
+  test("empty list", () => {
     expect(list.size()).toBe(0);
   });
-  test("add a node", () => {
+  test("list of length 1", () => {
     list.append('a');
 
     expect(list.size()).toBe(1);
   });
-  test("add three nodes", () => {
+  test("list of length 3", () => {
     list.append('a');
     list.append('b');
     list.append('c');
@@ -120,3 +120,38 @@ describe("test at method", () => {
     expect(list.at(2)).toBe(3);
   });
 });
+
+describe("test pop method", () => {
+  test("empty list", () => {
+    expect(list.pop()).toBeUndefined();
+    expect(list.getList()).toEqual([]);
+  })
+  test("list of length 1", () => {
+    list.append('a');
+    expect(list.pop()).toBe('a');
+    expect(list.getList()).toEqual([]);
+  })
+  test("list of length 2", () => {
+    list.append('a');
+    list.append('b');
+
+    expect(list.pop()).toBe('a');
+    expect(list.getList()).toEqual(['b']);
+  })
+})
+
+describe.only("test contains method", () => {
+  test("empty list", () => {
+    expect(list.contains('a')).toBe(false);
+  })
+  test("list does not contain the item", () => {
+    list.append('a');
+    expect(list.contains('b')).toBe(false);
+  })
+  test("list contains the item", () => {
+    list.append('a');
+    list.append('b');
+
+    expect(list.contains('b')).toBe(true);
+  })
+})

@@ -3,6 +3,28 @@ class LinkedList {
     this._head = null;
   }
 
+  contains(value) {
+    let current = this._head;
+
+    while (current) {
+      if (value === current.value) {
+        return true;
+      }
+      current = current.nextNode;
+    }
+
+    return false;
+  }
+
+  pop() {
+    if (this._head === null) return;
+
+    const headValue = this._head.value;
+    this._head = this._head.nextNode;
+
+    return headValue;
+  }
+
   at(index) {
     let current = this._head;
     let count = 0;
