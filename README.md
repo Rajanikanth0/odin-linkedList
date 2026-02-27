@@ -16,62 +16,71 @@ A performance efficient data-structure for push (insertion) and pop (deletion)
 ## Methods (usage, description, algorithm)
 
 ### append(value)
-Adds a new node containing value to the end of the list
 
-> Tracking pointers:
-> - **head**: first node of the list
-> - **tail**: last node of the list
+Adds a new node containing `value` to the end of the linked list.
 
-```javascript
-create a Node (value + next pointer)
+**Key terms:**
+- `head`: the first node of the list
+- `tail`: a pointer used to traverse the list
 
-if list is empty:
-  head = newNode
-  tail = newNode
-else:
-  tail.next = newNode
-  tail = newNode
-```
+**Algorithm:**
+1. if `head` is `null`, set `head` to the new node and return.
+2. Set `tail` as `head`.
+3. while `tail` is not `null`, move `tail` to `tail.next`.
+4. Set `tail.next` to the new node.
 
+---
 ### prepend(value)
-adds a new node containing value to the start of the list
 
-> Tracking pointers:
-> - **head**: first node of the list
-> - **tail**: last node of the list (optional)
+Adds a new node containing `value` to the start of the linked list.
 
-```javascript
-create a Node (value + next pointer)
+**Key terms:**
+- `head`: the first node of the list
 
-if list is empty:
-  head = newNode
-  tail = newNode (optional)
-else:
-  newNode.next = head;
-  head = newNode;
-```
+**Algorithm**
+1. if `head` is `null`, set `head` to the new node and return.
+2. Set `newNode.next` to `head`
+3. Update `head` to be the new node.
 
+---
 ### size()
-returns the total number of nodes in the list
 
-> Tracking pointers:
-> - **length** as 0: total number of nodes
+Returns the total number of nodes in the linked list.
 
-```javascript
-After each insertion: increase length by 1
-After each deletion: decrease length by 1
-```
+**Key terms:**
+- `head`: the first node of the list
+- `current`: a pointer used to traverse the list
+- `count`: tracks the number of nodes
 
-### head() and tail()
-returns current respective nodes. undefined if list is empty.
+**Algorithm**
+1. Initialize `count` as `0`.
+2. Set `current` to `head`.
+3. Traverse the list until `current` is `null`.
+    - Increment `count` by 1.
+    - Move `current` to `current.next`.
+4. Return `count`.
 
-> Tracking pointers:
-> - **head** as undefined: first node of the list
-> - **tail** as undefined: last node of the list
+### head()
 
-```javascript
-Update the pointers on each insertion or deletion
+Returns the `value` of the first node. `undefined` if list is empty.
 
-head to be the first node
-tail to be the last node 
-```
+**Key terms:**
+- `head`: the first node of the list
+
+**Algorithm**
+1. if `head` is not null, return `head.value`.
+2. Otherwise, return `undefined`.
+
+### tail()
+
+Returns the `value` of the final node. `undefined` if list is empty.
+
+**Key terms:**
+- `head`: the first node of the list
+- `current`: a pointer used to traverse the list
+
+**Algorithm**
+1. if `head` is `null`, return `undefined`.
+2. Set `current` to `head`.
+3. While `current.next` is not `null`, move `current` to `current.next`.
+4. Return `current.value`.
