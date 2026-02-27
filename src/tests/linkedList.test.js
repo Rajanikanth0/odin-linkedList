@@ -156,7 +156,7 @@ describe("test contains method", () => {
   })
 })
 
-describe.only("test findIndex method", () => {
+describe("test findIndex method", () => {
   test("empty list", () => {
     expect(list.findIndex(0)).toBe(-1);
   })
@@ -169,5 +169,21 @@ describe.only("test findIndex method", () => {
     list.append('b');
 
     expect(list.findIndex('b')).toBe(1);
+  })
+})
+
+describe.only("test toString method", () => {
+  test("empty list", () => {
+    expect(list.toString()).toBe("");
+  })
+  test("list of length 1", () => {
+    list.append('a');
+    expect(list.toString()).toBe("( a ) -> null");
+  })
+  test("list of length 2", () => {
+    list.append('a');
+    list.append('b');
+    
+    expect(list.toString()).toBe("( a ) -> ( b ) -> null");
   })
 })

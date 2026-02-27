@@ -3,6 +3,21 @@ class LinkedList {
     this._head = null;
   }
 
+  toString() {
+    if (this._head === null) return "";
+
+    let current = this._head;
+    let text = "";
+
+    while (current) {
+      text += `( ${current.value} ) -> `;
+      current = current.nextNode;
+    }
+    text += "null";
+
+    return text;
+  }
+
   findIndex(value) {
     let current = this._head;
     let index = 0;
