@@ -3,6 +3,55 @@ class LinkedList {
     this._head = null;
   }
 
+  insertAt(index, ...values) {
+    if (!this._head && index !== 0) {
+      throw new RangeError("Index out of range!");
+    }
+
+    let [start, end] = createCustomList(values);
+
+    if (index === 0) {
+      end.nextNode = this._head;
+      this._head = start;
+      return;
+    }
+
+    let count = 1;
+    let current = this._head;
+
+    while (current.nextNode && count < index) {
+      count++;
+      current = current.nextNode;
+    }
+
+    if (count === index) {
+      end.nextNode = current.nextNode;
+      current.nextNode = start;
+    } else {
+      throw new RangeError("Index out of range!");
+    }
+
+    function createCustomList(values) {
+      let start = null;
+      let end = start;
+
+      for (const value of values) {
+        let newNode = new Node(value);
+
+        if (start === null) {
+          start = newNode;
+          end = start;
+          continue;
+        }
+
+        end.nextNode = newNode;
+        end = end.nextNode;
+      }
+
+      return [start, end];
+    }
+  }
+
   toString() {
     if (this._head === null) return "";
 
