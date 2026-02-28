@@ -189,6 +189,10 @@ describe("test toString method", () => {
 })
 
 describe.only("insertAt method", () => {
+  test("negative index", () => {
+    expect(() => list.insertAt(-1, 'a')).toThrow(RangeError);
+  })
+
   describe("empty list", () => {
     test("insertion at index 0", () => {
       list.insertAt(0, 'a');

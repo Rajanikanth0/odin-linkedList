@@ -4,6 +4,10 @@ class LinkedList {
   }
 
   insertAt(index, ...values) {
+    if (index < 0) {
+      throw new RangeError("Index must be non-negative!");
+    }
+
     let [start, end] = createCustomList(values);
 
     if (index === 0) {
