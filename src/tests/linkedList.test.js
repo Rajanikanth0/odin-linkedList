@@ -188,7 +188,7 @@ describe("test toString method", () => {
   })
 })
 
-describe.only("test insertAt method", () => {
+describe.only("insertAt method", () => {
   describe("empty list", () => {
     test("insertion at index 0", () => {
       list.insertAt(0, 'a');
@@ -261,35 +261,4 @@ describe.only("test insertAt method", () => {
       expect(list.toString()).toBe("( a ) -> ( b ) -> ( c ) -> ( d ) -> null");
     })
   })
-
-  // test("insert on an empty list", () => {
-  //   list.insertAt(0, 'a');
-  //   expect(list.toString()).toBe("( a ) -> null");
-  // })
-  // test("insert at the end", () => {
-  //   list.append('a');
-
-  //   list.insertAt(1, 'b');
-  //   expect(list.toString()).toBe("( a ) -> ( b ) -> null");
-  // })
-  // test("insert in-between", () => {
-  //   list.append('a');
-  //   list.append('b');
-
-  //   list.insertAt(1, 'c');
-  //   expect(list.toString()).toBe("( a ) -> ( c ) -> ( b ) -> null");
-  // })
-  // test("out of range index", () => {
-  //   list.append('a');
-  //   list.append('b');
-
-  //   expect(() => list.insertAt(4, 'c')).toThrow(RangeError);
-  // })
-  // test("insert multiple insertion values in-between", () => {
-  //   list.append('a');
-  //   list.append('b');
-
-  //   list.insertAt(1, 'c', 'd', 'e');
-  //   expect(list.toString()).toBe("( a ) -> ( c ) -> ( d ) -> ( e ) -> ( b ) -> null");
-  // })
 })
