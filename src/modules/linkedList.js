@@ -4,10 +4,6 @@ class LinkedList {
   }
 
   insertAt(index, ...values) {
-    if (!this._head && index !== 0) {
-      throw new RangeError("Index out of range!");
-    }
-
     let [start, end] = createCustomList(values);
 
     if (index === 0) {
@@ -16,20 +12,20 @@ class LinkedList {
       return;
     }
 
-    let count = 1;
+    let count = 0;
     let current = this._head;
 
-    while (current.nextNode && count < index) {
+    while (current && count < index - 1) {
       count++;
       current = current.nextNode;
     }
 
-    if (count === index) {
-      end.nextNode = current.nextNode;
-      current.nextNode = start;
-    } else {
+    if (!current) {
       throw new RangeError("Index out of range!");
     }
+    
+    end.nextNode = current.nextNode;
+    current.nextNode = start;
 
     function createCustomList(values) {
       let start = null;
