@@ -3,6 +3,31 @@ class LinkedList {
     this._head = null;
   }
 
+  removeAt(index) {
+    if (this._head === null) {
+      throw new RangeError("List is empty!");
+    }
+
+    if (index === 0) {
+      this._head = this._head.nextNode;
+      return
+    }
+
+    let count = 0;
+    let current = this._head;
+
+    while (current.nextNode && count < index-1) {
+      count++;
+      current = current.nextNode
+    }
+
+    if (!current.nextNode) {
+      throw new RangeError("Index out of range!");
+    }
+
+    current.nextNode = current.nextNode.nextNode;
+  }
+
   insertAt(index, ...values) {
     if (index < 0) {
       throw new RangeError("Index must be non-negative!");
