@@ -16,12 +16,12 @@ class LinkedList {
     let count = 0;
     let current = this._head;
 
-    while (current.nextNode && count < index-1) {
+    while (current && count < index-1) {
       count++;
       current = current.nextNode
     }
 
-    if (!current.nextNode) {
+    if (!current || !current.nextNode) {
       throw new RangeError("Index out of range!");
     }
 

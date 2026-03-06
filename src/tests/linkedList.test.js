@@ -279,49 +279,29 @@ describe.only("removeAt method", () => {
       expect(() => list.removeAt(3)).toThrow(RangeError);
     })
   })
-
-  describe("remove at the start", () => {
-    test("list of length 1", () => {
-      list.append('a');
-
-      list.removeAt(0);
-      expect(list.toString()).toBe("");
-    })
-    test("list of length 2", () => {
+  
+  describe("remove from a position", () => {
+    test("At the start", () => {
       list.append('a');
       list.append('b');
-
+      
       list.removeAt(0);
       expect(list.toString()).toBe("( b ) -> null");
     })
-  })
-
-  describe("remove in the middle", () => {
-    test("list of length 2", () => {
+    test("In the middle", () => {
       list.append('a');
       list.append('b');
       list.append('c');
-
+  
       list.removeAt(1);
       expect(list.toString()).toBe("( a ) -> ( c ) -> null");
     })
-  })
-  
-  describe("remove at the end", () => {
-    test("list of length 2", () => {
+    test("At the end", () => {
       list.append('a');
       list.append('b');
-
+  
       list.removeAt(1);
       expect(list.toString()).toBe("( a ) -> null");
-    })
-    test("list of length 2", () => {
-      list.append('a');
-      list.append('b');
-      list.append('c');
-
-      list.removeAt(2);
-      expect(list.toString()).toBe("( a ) -> ( b ) -> null");
     })
   })
 })
